@@ -63,12 +63,11 @@ foreach ($callboards as $end){
     <form action = "msg.php" method="POST">
 
         <input type="hidden" name=$_POST['id']>
-        回覆者:<input type="text" name="msg_user" value= "<?=$user;?>" id="msguser"><br>
-        回覆內容:<input type="text" name="msg" id="msg"><br>
+        評論者:<input type="text" name="msg_user" value= "<?=$user;?>" id="msg_user"><br>
+        評論內容:<input type="text" name="msg" id="msg"><br>
         <input type="submit" name="submit" value="回覆留言">
     </form>
 </form>
-
 
 
 </body>
