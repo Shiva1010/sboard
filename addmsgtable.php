@@ -1,3 +1,4 @@
+
 <?php
 
 $server = "localhost";
@@ -17,20 +18,17 @@ try {
         boards_id INT(4),
         msg_user VARCHAR (20) NOT NULL,
         msg VARCHAR (100) NOT NULL,   
-        create_time TIMESTAMP 
-
+        create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )";
 
     $conn->exec($msg);
 
     echo "回覆留言資料表創建成功";
 
-    } catch (PDOException $e) {
+} catch (PDOException $e) {
 
     echo $msg . "<br>" . $e->getMessage();
 
-    }
+}
 
 $conn = null;
-
-

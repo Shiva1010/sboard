@@ -19,7 +19,7 @@ try {
         msg_id INT(4),
         remsg_user VARCHAR (20) NOT NULL,
         remsg VARCHAR (100) NOT NULL,   
-        create_time TIMESTAMP
+        create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )";
 
     $conn->exec($remsg);
@@ -33,8 +33,3 @@ try {
 }
 
 $conn = null;
-
-
-
-
-
