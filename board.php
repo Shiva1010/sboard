@@ -25,7 +25,7 @@ $callboards = $conn->query($boards_desc);
 <form action = "newboard.php" method="POST">
 
     留言者:<input type="text" name="author" value= "<?=$user;?>" id="author"><br>
-    留言內容:<input type="text" name="contect" id="contect"><br>
+    留言內容:<input type="text" name="contect" id="contect"> <br>
     <input type="submit" name="submit" value="新增留言"><br>
 
 
@@ -34,7 +34,7 @@ $callboards = $conn->query($boards_desc);
 
 </form>
 
-<table border="1" align = "center">
+<table border = "1" align = "center">
 
     <tr>
         <th>番號</th>
@@ -59,6 +59,7 @@ foreach ($callboards as $end){
             <div style='border:3px #98685cd8 ridge'>{$end['content']}</div>
             <div><font size='1' color='#87ceeb'>留言時間：{$end['create_time']}</font></div>
             <br>
+            
             <form action = 'msg.php' method= 'POST'>
             <input type = 'hidden' name='board_id' value='{$end['id']}'>
             <input type = 'hidden' name='msg_user' value=$user >
@@ -114,6 +115,7 @@ foreach ($callboards as $end){
                         <div><font size='1' color='#8b4513'>留言號：</font>{$remsg_end['boards_id']}</div>
                         <div><font size='1' color='#8b4513'>評論號：</font>{$remsg_end['msg_id']}</div>
                         <div><font size='2' color='#f08080'>回覆者：</font>{$remsg_end['remsg_user']}</div>
+                        <div><font size='2' color='#f08000'>回覆內容：</font>{$remsg_end['remsg']}</div>
                        </div>"
                     ;
 

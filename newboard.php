@@ -23,7 +23,7 @@ if (isset($_POST["author"])) {
 
 
 
-    $conn->exec($sql);
+   $conn->exec($sql);
 
 
 
