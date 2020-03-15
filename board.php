@@ -76,24 +76,51 @@ foreach ($callboards as $end){
             if($end['id'] != $msg_end['boards_id']){
                 continue;
             }
-            echo "<td>
-                <div><font size='1' color='#8b4513'>評論番號：</font>{$msg_end['boards_id']}</div>
-                <div><font size='2' color='#f08080'>評論者：</font>{$msg_end['msg_user']}</div>
-                <div><font size='2' color='#f08080'>評論內容：</font></div>
-                <div style='border:3px #98bb5cd8 ridge'><font size='1'>{$msg_end['msg']}</div>
-                <div><font size='1' color='#a9a9a9'>評論時間：{$msg_end['create_time']}</font></div>
-                <br>
-                <form action = 'remsg.php' method = 'POST'>
-                <input type= 'hidden' name= 'board_id' value='{$msg_end['boards_id']}'>
-                <input type= 'hidden' name= 'msg_id' value ='{$msg_end['id']}'>
-                <input type= 'hidden' name= 'remsg_user' value = $user>
-                <div>回覆評論：<input type= 'text' name= 'remsg'></div>
-                <div><input type='submit' name='submit' value='回覆'></div>
-                </form>
-               </td>";
+                echo "<td>
+                    <div><font size='1' color='#8b4513'>評論號：</font>{$msg_end['id']}</div>
+                    <div><font size='2' color='#f08080'>評論者：</font>{$msg_end['msg_user']}</div>
+                    <div><font size='2' color='#f08080'>評論內容：</font></div>
+                    <div style='border:3px #98bb5cd8 ridge'><font size='1'>{$msg_end['msg']}</div>
+                    <div><font size='1' color='#a9a9a9'>評論時間：{$msg_end['create_time']}</font></div>
+                    <br>
+                    <form action = 'remsg.php' method = 'POST'>
+                    <input type= 'hidden' name= 'board_id' value='{$msg_end['boards_id']}'>
+                    <input type= 'hidden' name= 'msg_id' value ='{$msg_end['id']}'>
+                    <input type= 'hidden' name= 'remsg_user' value = $user>
+                    <div>回覆評論：<input type= 'text' name= 'remsg'></div>
+                    <div><input type='submit' name='submit' value='回覆'></div>
+                    </form>
+                    ";
+
+            $remsgs_desc = "SELECT * FROM remsgs ORDER BY id DESC";
+            $callremsgs = $conn->query($remsgs_desc);
+
+            foreach ($callremsgs as $remsg_end){
+
+
+                if($msg_end['id'] != $remsg_end['msg_id']){
+                    continue;
+                }
+
+//                    echo "
+//                       <td>
+//                        <div><font size='1' color='#8b4513'>留言號：</font>{$remsg_end['boards_id']}</div>
+//                        <div><font size='1' color='#8b4513'>評論號：</font>{$remsg_end['msg_id']}</div>
+//                        <div><font size='2' color='#f08080'>回覆者：</font>{$remsg_end['remsg_user']}</div>
+//
+//                    </td>";
+                    echo "
+                         <div style='border:3px #5CADAD ridge'><font size='1'>
+                        <div><font size='1' color='#8b4513'>留言號：</font>{$remsg_end['boards_id']}</div>
+                        <div><font size='1' color='#8b4513'>評論號：</font>{$remsg_end['msg_id']}</div>
+                        <div><font size='2' color='#f08080'>回覆者：</font>{$remsg_end['remsg_user']}</div>
+                       </div>"
+                    ;
 
 
 
+            }
+            echo "</td>";
         }
 
     echo  "</tr>";
