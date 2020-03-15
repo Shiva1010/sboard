@@ -8,9 +8,12 @@ if (isset($_POST['user'])) {
 
 }
 
-$boards_asc = "SELECT  * FROM boards ORDER  BY id ASC ";
+$boards_desc = "SELECT  * FROM boards ORDER  BY id DESC ";
+//$msgs_desc = "SELECT * FROM msgs ORDER  BY id DESC";
 
-$callboards = $conn->query($boards_asc);
+
+$callboards = $conn->query($boards_desc);
+//$callmsgs = $conn->query($msgs_desc);
 ?>
 
 <html>
@@ -40,19 +43,22 @@ foreach ($callboards as $end){
             </td>";
     echo  "<td>
             <div><font size='2' color='#8b4513'>留言者：</font>{$end['author']}</div>
-            <div><font size='2' color='#cd853f'>留言內容：</font>
-            <div style='border:2px #a9aba9 solid'>{$end['content']}</div>
+            <div><font size='2' color='#d2691e'>留言內容：</font>
+            <div style='border:2px #984B5c solid'>{$end['content']}</div>
             <div><font size='1' color='#87ceeb'>留言時間：{$end['create_time']}</font></div>
             </td>>";
-#a9a9a9
-    echo  "<td>
+
+//    foreach ($callmsgs as $msg_end) {
+//        <div><font size='2' color='#8b4513'>回覆者：</font>{$msg_end['msg_user']}</div>
+        echo "<td>
             <form action = 'msg.php' method= 'POST'>
-            <input type = 'hidden' value='{$end['id']}'>
-            <div>評論者：<input type='text' name='msg_user' value= $user id='msg_user'></div>
+            <input type = 'hidden' name='board_id' value='{$end['id']}'>
+            <div>評論者：<input type='text' name='msg_user' value= $user></div>
             <div>評論內容：<input type='text' name='msg' id='msg'></div>
             <div><input type='submit' name='submit' value='回覆留言'></div>
             </form>
            </td>";
+//    }
 //    echo  "<td><input type='submit' name='submit' value='回覆留言'></td>";
     echo  "</tr>";
 
