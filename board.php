@@ -22,12 +22,9 @@ $callboards = $conn->query($boards_asc);
 <table border="1" align = "center">
 
     <tr>
-        <th>ID</th>
-        <th>留言者</th>
+        <th>番號</th>
         <th>留言</th>
-        <th>留言時間</th>
-        <th>讚數</th>
-        <th>回覆者</th>
+        <th>回覆</th>
     </tr>
 
 <!--<form action = "look.php" method="GET">-->
@@ -37,12 +34,26 @@ $callboards = $conn->query($boards_asc);
 
 foreach ($callboards as $end){
     echo  "<tr>";
-    echo  "<td><input type='text' value='{$end['id']}'></td>";
-    echo  "<td><input type='text' value='{$end['author']}'></td>>";
-    echo  "<td><input type='text' value='{$end['content']}'></td>>";
-    echo  "<td><input type='text' value='{$end['create_time']}'></td>";
-    echo  "<td><input type='text' value='{$end['good']}'></td>>";
-    echo  "<td><input type='submit' name='submit' value='回覆留言'></td>";
+//    echo  "<td><input type='text' value='{$end['id']}'></td>";
+    echo  "<td>
+            <div align='center'>{$end['id']}</div>
+            </td>";
+    echo  "<td>
+            <div><font size='2' color='#8b4513'>留言者：</font>{$end['author']}</div>
+            <div><font size='2' color='#cd853f'>留言內容：</font>
+            <div style='border:2px #a9aba9 solid'>{$end['content']}</div>
+            <div><font size='1' color='#87ceeb'>留言時間：{$end['create_time']}</font></div>
+            </td>>";
+#a9a9a9
+    echo  "<td>
+            <form action = 'msg.php' method= 'POST'>
+            <input type = 'hidden' value='{$end['id']}'>
+            <div>評論者：<input type='text' name='msg_user' value= $user id='msg_user'></div>
+            <div>評論內容：<input type='text' name='msg' id='msg'></div>
+            <div><input type='submit' name='submit' value='回覆留言'></div>
+            </form>
+           </td>";
+//    echo  "<td><input type='submit' name='submit' value='回覆留言'></td>";
     echo  "</tr>";
 
 //    print $end['author'];
@@ -53,20 +64,17 @@ foreach ($callboards as $end){
 ?>
 
 
-<div></div>
+
 <form action = "newboard.php" method="POST">
 
     留言者:<input type="text" name="author" value= "<?=$user;?>" id="author"><br>
     留言內容:<input type="text" name="contect" id="contect"><br>
     <input type="submit" name="submit" value="新增留言"><br>
 
-    <form action = "msg.php" method="POST">
 
-        <input type="hidden" name=$_POST['id']>
-        評論者:<input type="text" name="msg_user" value= "<?=$user;?>" id="msg_user"><br>
-        評論內容:<input type="text" name="msg" id="msg"><br>
-        <input type="submit" name="submit" value="回覆留言">
-    </form>
+<!--要回覆的文章編號，可用 hidden 處理-->
+<!-- <input type="hidden" name=$_POST['id']>-->
+
 </form>
 
 
