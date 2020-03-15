@@ -11,23 +11,22 @@ include("conn.php");
 
 
 
-if (isset($_POST["author"])) {
+if (isset($_POST["board_id"])) {
 
-    $author = $_POST["author"];
-    $contect = $_POST["contect"];
-
-    $good = 0;
-
-    $sql="INSERT INTO boards(author,content,good)
-            VALUES( '$author','$contect','$good')";
+    $boards_id = $_POST["board_id"];
+    $msg_user = $_POST["msg_user"];
+    $msg = $_POST["msg"];
 
 
 
-    $conn->exec($sql);
+    $msgs="INSERT INTO msgs(boards_id,msg_user,msg)
+            VALUES( '$boards_id','$msg_user','$msg')";
 
 
+    $conn->exec($msgs);
 
-    echo "新增留言成功";
+
+    echo "新增評論成功";
 
 
 
