@@ -47,10 +47,24 @@ foreach ($callboards as $end){
             <div style='border:2px #984B5c solid'>{$end['content']}</div>
             <div><font size='1' color='#87ceeb'>留言時間：{$end['create_time']}</font></div>
             </td>>";
-
+//    $msg_end['boards_id']
 //    foreach ($callmsgs as $msg_end) {
-//        <div><font size='2' color='#8b4513'>回覆者：</font>{$msg_end['msg_user']}</div>
+    $msgs_desc = "SELECT * FROM msgs ORDER  BY id DESC";
+
+
+    //    $callboards = $conn->query($boards_desc);
+    $callmsgs = $conn->query($msgs_desc);
+
+
+        foreach ($callmsgs as $msg_end) {
+        if($end['id'] != $msg_end['boards_id']){
+//            echo $end['id'] .'hello';
+//            var_dump($msg_end.'<br>');
+            continue;
+        }
         echo "<td>
+            <div><font size='2' color='#8b4513'>評論番號：</font>{$msg_end['boards_id']}</div>
+            <div><font size='2' color='#f08080'>評論者：</font>{$msg_end['msg_user']}</div>
             <form action = 'msg.php' method= 'POST'>
             <input type = 'hidden' name='board_id' value='{$end['id']}'>
             <div>評論者：<input type='text' name='msg_user' value= $user></div>
@@ -58,7 +72,8 @@ foreach ($callboards as $end){
             <div><input type='submit' name='submit' value='回覆留言'></div>
             </form>
            </td>";
-//    }
+
+    }
 //    echo  "<td><input type='submit' name='submit' value='回覆留言'></td>";
     echo  "</tr>";
 
