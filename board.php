@@ -9,11 +9,11 @@ if (isset($_POST['user'])) {
 }
 
 $boards_desc = "SELECT  * FROM boards ORDER  BY id DESC ";
-//$msgs_desc = "SELECT * FROM msgs ORDER  BY id DESC";
+$msgs_desc = "SELECT * FROM msgs ORDER  BY id DESC";
 
 
 $callboards = $conn->query($boards_desc);
-//$callmsgs = $conn->query($msgs_desc);
+$callmsgs = $conn->query($msgs_desc);
 ?>
 
 <html>
@@ -48,20 +48,20 @@ foreach ($callboards as $end){
             <div><font size='1' color='#87ceeb'>留言時間：{$end['create_time']}</font></div>
             </td>>";
 //    $msg_end['boards_id']
-//    foreach ($callmsgs as $msg_end) {
-    $msgs_desc = "SELECT * FROM msgs ORDER  BY id DESC";
-
-
-    //    $callboards = $conn->query($boards_desc);
-    $callmsgs = $conn->query($msgs_desc);
-
+////    foreach ($callmsgs as $msg_end) {
+//    $msgs_desc = "SELECT * FROM msgs ORDER  BY id DESC";
+//
+//
+//    //    $callboards = $conn->query($boards_desc);
+//    $callmsgs = $conn->query($msgs_desc);
+//
 
         foreach ($callmsgs as $msg_end) {
-        if($end['id'] != $msg_end['boards_id']){
-//            echo $end['id'] .'hello';
-//            var_dump($msg_end.'<br>');
-            continue;
-        }
+//        if($end['id'] != $msg_end['boards_id']){
+////            echo $end['id'] .'hello';
+////            var_dump($msg_end.'<br>');
+//            continue;
+//        }
         echo "<td>
             <div><font size='2' color='#8b4513'>評論番號：</font>{$msg_end['boards_id']}</div>
             <div><font size='2' color='#f08080'>評論者：</font>{$msg_end['msg_user']}</div>
