@@ -1,5 +1,6 @@
 <?php session_start();
-require_once("conn.php");
+include("conn.php");
+//require_once("conn.php");
 
 // 要使用 isset($_SESSION['user'] 還是 isset($_POST['user']) ???
 if (isset($_POST['user'])) {
@@ -15,23 +16,26 @@ if (isset($_POST['user'])) {
     <meta charset="UTF-8" />
     <title>Shiva の　留言板</title>
 <body>
-
-<font size='5' color='#02C88b'>Shiva の 留言板</font><br><br>
+<div style="text-align: center">
+<font size='6' color='#02C88b'>Shiva の 留言板</font><br><br>
 
 
 <form action = "newboard.php" method="POST">
 
-    <font size='2' color='#02C7c'>
-        留言者:<input type="text" name="author" value= "<?=$user;?>" id="author"><br>
-        留言內容:<input type="text" name="contect" id="contect"> <br>
+    <font size='4' color='#02C7c'>
+        留言者<br>
+        <input type = 'hidden' name='author' value=<?=$user;?> >
+        <font size='4' color="#796a55"><?=$user;?></font><br><br>
+
+        留言內容<br><input type="text" name="contect" id="contect" border = "3" style="width:200px; height:50px;"><br>
     </font>
     <input type="submit" name="submit" value="新增留言"><br>
 
 
     <!--要回覆的文章編號，可用 hidden 處理-->
     <!-- <input type="hidden" name=$_POST['id']>-->
-
 </form>
+</div>
 
 <table border = "1" align = "center">
 
@@ -50,12 +54,12 @@ $boards_desc = "SELECT  * FROM boards ORDER  BY id DESC ";
 
 $callboards = $conn->query($boards_desc);
 
-foreach ($callboards as $end){
+    foreach ($callboards as $end) {
 //    echo  "<td><input type='text' value='{$end['id']}'></td>";
 
 //    echo  "<td>";
 //        echo"<div style='border:5px #408080 groove'>";
-        echo"
+        echo "
             <div style='border:3px 	#FF7575 ridge'>
             <font size='2' color='#8b4513'>番號：{$end['id']}</font><br>
             <font size='2' color='#8b4513'>留言者：</font>{$end['author']}<br>
@@ -73,17 +77,17 @@ foreach ($callboards as $end){
             <br>";
 //            </td>";
 
-    $msgs_desc = "SELECT * FROM msgs ORDER  BY id DESC";
-    $callmsgs = $conn->query($msgs_desc);
+        $msgs_desc = "SELECT * FROM msgs ORDER  BY id DESC";
+        $callmsgs = $conn->query($msgs_desc);
 
 
         foreach ($callmsgs as $msg_end) {
 
-            if($end['id'] != $msg_end['boards_id']){
+            if ($end['id'] != $msg_end['boards_id']) {
                 continue;
             }
 //                echo "<td>
-                echo"
+            echo "
                   
                     <div style='border:3px #A3D1D1 ridge'	><font size='1' color='#7E3D76'>評論號：</font>{$msg_end['id']}<br>
                     <font size='1' color='#7E3D76'>評論者：</font>{$msg_end['msg_user']}<br>
@@ -105,10 +109,10 @@ foreach ($callboards as $end){
             $remsgs_desc = "SELECT * FROM remsgs ORDER BY id DESC";
             $callremsgs = $conn->query($remsgs_desc);
 
-            foreach ($callremsgs as $remsg_end){
+            foreach ($callremsgs as $remsg_end) {
 
 
-                if($msg_end['id'] != $remsg_end['msg_id']){
+                if ($msg_end['id'] != $remsg_end['msg_id']) {
                     continue;
                 }
 
@@ -121,7 +125,7 @@ foreach ($callboards as $end){
 //                    </td>";
 
 
-                    echo "
+                echo "
                         
                         <font size='1' color='#f08080'>回覆者：</font>
                         <font size='1' color='#5B4B00'>{$remsg_end['remsg_user']}</font><br>
@@ -134,7 +138,7 @@ foreach ($callboards as $end){
         }
 
 
-}
+    }
 
 
 ?>

@@ -22,7 +22,6 @@ if (isset($_POST["author"])) {
             VALUES( '$author','$contect','$good')";
 
 
-
    $conn->exec($sql);
 
 
