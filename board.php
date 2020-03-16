@@ -7,6 +7,14 @@ if (isset($_POST['user'])) {
 
     $user = $_SESSION['user'] = $_POST['user'];
 
+}elseif(isset($_POST["author"])){
+
+    $user = $_SESSION['author'] = $_POST['author'];
+
+}else{
+
+    $user="不要問我是誰";
+
 }
 
 
