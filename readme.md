@@ -49,7 +49,7 @@
        
 #### 3. 使用者輸入姓名，點擊按鈕 
 
-位置：user.php
+位置：index.php
 
 ![](https://i.imgur.com/ko3bFnI.png)
 
