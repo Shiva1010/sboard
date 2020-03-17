@@ -12,7 +12,7 @@ Capsule::schema()->create('boards', function ($table) {
 
     $table->string('content')->nullable(false);
 
-    $table->timestamps();
+    $table->timestamp('create_time');
 
 });
 
@@ -26,7 +26,7 @@ Capsule::schema()->create('msgs', function ($table) {
 
     $table->string('msg')->nullable(false);
 
-    $table->timestamps();
+    $table->timestamp('create_time');
 
 });
 
@@ -43,7 +43,7 @@ Capsule::schema()->create('remsgs', function ($table) {
 
     $table->string('remsg')->nullable(false);
 
-    $table->timestamps();
+    $table->timestamp('create_time');
 
 });
 
