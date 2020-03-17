@@ -140,8 +140,11 @@ $user = $_SESSION['user'];
                         
                         <font size='1' color='#f08080'>回覆者：</font>
                         <font size='1' color='#5B4B00'>{$remsg_end['remsg_user']}</font><br>
+                        <font size='1' color='#a9a9a9'>回覆時間：{$remsg_end['create_time']}</font><br>
                         <font size='1' color='#f08080'>回覆內容</font><br>
-                        <font size='1' color='#5B4B00'>{$remsg_end['remsg']}</font><br><br>";
+                        <font size='1' color='#5B4B00'>{$remsg_end['remsg']}</font><br><br>
+                       
+                     ";
 
             }
             echo "<br>";
