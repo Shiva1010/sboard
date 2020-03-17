@@ -6,7 +6,7 @@ include("conn.php");
 //die();
 
 
-$user = $_SESSION['user'];
+//$user = $_SESSION['user'];
 
 
 if (isset($_POST["board_id"])) {
@@ -16,25 +16,24 @@ if (isset($_POST["board_id"])) {
     $msg = $_POST["msg"];
 
 
-
-    $msgs="INSERT INTO msgs(boards_id,msg_user,msg)
+    $msgs = "INSERT INTO msgs(boards_id,msg_user,msg)
             VALUES( '$boards_id','$msg_user','$msg')";
 
 
     $conn->exec($msgs);
 
 
-    echo "新增評論成功";
-    echo "<br>
-          <form action = 'board.php' method = 'POST'>
-          <input type= 'hidden' name= 'user' value=$user>
-          <input type='submit' name='submit' value='返回留言板'>
-          ";
+//    echo "新增評論成功";
+//    echo "<br>
+//          <form action = 'board.php' method = 'POST'>
+//          <input type= 'hidden' name= 'user' value=$user>
+//          <input type='submit' name='submit' value='返回留言板'>
+//          ";
 
 
-//    $url = "board.php";
-//    echo "<script language='javascript' type='text/javascript'>";
-//    echo "window.location.href='$url'";
-//    echo "</script>";
+    $url = "board.php";
+    echo "<script language='javascript' type='text/javascript'>";
+    echo "window.location.href='$url'";
+    echo "</script>";
 
 }

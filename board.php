@@ -5,9 +5,11 @@ include("conn.php");
 // 要使用 isset($_SESSION['user'] 還是 isset($_POST['user']) ???
 if (isset($_POST['user'])) {
 
-    $user = $_SESSION['user'] = $_POST['user'];
+    $_SESSION['user'] = $_POST['user'];
 
 }
+
+$user = $_SESSION['user'];
 //elseif(isset($_POST["author"])){
 //
 //    $user = $_SESSION['author'] = $_POST['author'];
@@ -22,46 +24,46 @@ if (isset($_POST['user'])) {
 ?>
 
 <html>
-    <meta charset="UTF-8" />
-    <title>Shiva の　留言板</title>
+<meta charset="UTF-8"/>
+<title>Shiva の　留言板</title>
 <body>
 <div style="text-align: center">
-<font size='6' color='#02C88b'>Shiva の 留言板</font><br><br>
+    <font size='6' color='#02C88b'>Shiva の 留言板</font><br><br>
 
 
-<form action = "newboard.php" method="POST">
+    <form action="newboard.php" method="POST">
 
-    <font size='4' color='#02C7c'>
-        留言者<br>
-        <input type = 'hidden' name='author' value=<?=$user;?> >
-        <font size='4' color="#796a55"><?=$user;?></font><br><br>
+        <font size='4' color='#02C7c'>
+            留言者<br>
+            <input type='hidden' name='author' value=<?= $user; ?>>
+            <font size='4' color="#796a55"><?= $user; ?></font><br><br>
 
-        留言內容<br><input type="text" name="contect" id="contect" border = "3" style="width:200px; height:50px;"><br>
-    </font>
-    <input type="submit" name="submit" value="新增留言"><br>
+            留言內容<br><input type="text" name="contect" id="contect" border="3" style="width:200px; height:50px;"><br>
+        </font>
+        <input type="submit" name="submit" value="新增留言"><br>
 
 
-    <!--要回覆的文章編號，可用 hidden 處理-->
-    <!-- <input type="hidden" name=$_POST['id']>-->
-</form>
+        <!--要回覆的文章編號，可用 hidden 處理-->
+        <!-- <input type="hidden" name=$_POST['id']>-->
+    </form>
 </div>
 
-<table border = "1" align = "center">
+<table border="1" align="center">
 
-<!--    <tr>-->
-<!--        <th>番號</th>-->
-<!--        <th>留言</th>-->
-<!--        <th>回覆內容</th>-->
-<!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <th>番號</th>-->
+    <!--        <th>留言</th>-->
+    <!--        <th>回覆內容</th>-->
+    <!--    </tr>-->
 
-<!--<form action = "look.php" method="GET">-->
-<?php
+    <!--<form action = "look.php" method="GET">-->
+    <?php
 
-//echo "<input type='text' value='hi'>";
+    //echo "<input type='text' value='hi'>";
 
-$boards_desc = "SELECT  * FROM boards ORDER  BY id DESC ";
+    $boards_desc = "SELECT  * FROM boards ORDER  BY id DESC ";
 
-$callboards = $conn->query($boards_desc);
+    $callboards = $conn->query($boards_desc);
 
     foreach ($callboards as $end) {
 //    echo  "<td><input type='text' value='{$end['id']}'></td>";
@@ -150,7 +152,7 @@ $callboards = $conn->query($boards_desc);
     }
 
 
-?>
+    ?>
 
 </body>
 </html>
