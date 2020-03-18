@@ -4,6 +4,32 @@ require "bootstrap.php";
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+Capsule::schema()->create('users', function ($table) {
+
+    $table->increments('id');
+
+    $table->string('user_name')->nullable(false);
+
+    $table->timestamp('create_time');
+
+});
+
+Capsule::schema()->create('goods', function ($table) {
+
+    $table->increments('id');
+
+    $table->string('user_id')->nullable(false);
+
+    $table->string('user_name')->nullable(false);
+
+    $table->integer('boards_id');
+
+    $table->timestamp('create_time');
+
+});
+
+
+
 Capsule::schema()->create('boards', function ($table) {
 
     $table->increments('id');
