@@ -29,10 +29,10 @@ $user = $_SESSION['user'];
         </font>
         <input type="submit" name="submit" value="新增留言"><br>
 
-        <!--要回覆的文章編號，可用 hidden 處理-->
-        <!-- <input type="hidden" name=$_POST['id']>-->
     </form>
 </div>
+
+
 
 <?php
 
@@ -54,6 +54,14 @@ $user = $_SESSION['user'];
                 
                 {$end->content}<br><br>
                    
+                   
+                <form action = 'ormgood.php' method= 'POST'>
+                <input type = 'hidden' name='board_id' value='{$end->id}'>
+                <input type = 'hidden' name='user' value=$user >
+                <input type='submit' name='submit' value='讚'>
+                </form>
+                <br>                
+
                    
                 <form action = 'ormmsg.php' method= 'POST'>
                 <input type = 'hidden' name='board_id' value='{$end->id}'>
