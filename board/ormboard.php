@@ -81,7 +81,17 @@ $user = $_SESSION['user'];
                     <font size='1' color='#a9a9a9'>評論時間：{$msg_end->create_time}</font>
                     <br><br>
                     <font size='2' color='	#7E3D76'>評論內容</font><br>
-                    <font size='1' color='black'>{$msg_end->msg}</font>";
+                    <font size='1' color='black'>{$msg_end->msg}</font><br><br>
+
+                    <form action = 'ormremsg.php' method = 'POST'>
+                    <input type= 'hidden' name= 'board_id' value='{$msg_end->boards_id}'>
+                    <input type= 'hidden' name= 'msg_id' value ='{$msg_end->id}'>
+                    <input type= 'hidden' name= 'remsg_user' value = $user>
+                    <font size='1' color='teal'>回覆評論：<input type= 'text' name= 'remsg'></font><br>
+                    <div><input type='submit' name='submit' value='回覆'></div>
+                    </form>
+                    </div>
+                    <br>";
         }
 
     }
