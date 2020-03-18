@@ -50,6 +50,7 @@ $user = $_SESSION["user"];
     $user_id = $user_desc -> id;
 
     foreach ($boards_desc as $end) {
+
         echo "
                 <div style='border:3px 	#FF7575 ridge'>
                 <font size='2' color='#8b4513'>番號：{$end->id}</font><br>
@@ -58,18 +59,27 @@ $user = $_SESSION["user"];
                 <br>
                 <font size='2' color='#8b4513'>留言內容</font><br>
                 
-                {$end->content}<br><br>
-                   
-                   
+                {$end->content}<br><br>";
+
+
+            $goods_board = $end->id;
+            $count_good = Capsule::table('goods')
+                ->where('boards_id','=',$goods_board)
+                ->count();
+
+        echo "                 
+                <font size='2' color='#8b0000'>讚數：$count_good </font>
                 <form action = 'ormgood.php' method= 'POST'>
                 <input type = 'hidden' name='board_id' value='{$end->id}'>
                 <input type = 'hidden' name='user_id' value=$user_id >
                 <input type = 'hidden' name='user' value=$user >
                 <input type='submit' name='submit' value='讚'>
                 </form>
-                <br>                
+                ";
 
-                   
+
+        echo "  
+                <font size='1' color='#9D9D9D'>{$end->create_time}</font><br>
                 <form action = 'ormmsg.php' method= 'POST'>
                 <input type = 'hidden' name='board_id' value='{$end->id}'>
                 <input type = 'hidden' name='msg_user' value=$user >

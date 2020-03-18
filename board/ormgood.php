@@ -17,7 +17,7 @@ $have_good = Capsule::table('goods')
 
 
 
-if ($have_good === null){
+if ($have_good == null){
 
     Capsule::table('goods')->insert
     ([
@@ -28,6 +28,11 @@ if ($have_good === null){
     ]);
     echo  "按讚完成<br>";
 
+    $url = "ormboard.php";
+    echo "<script language='javascript' type='text/javascript'>";
+    echo "window.location.href='$url'";
+    echo "</script>";
+
 }else{
 
     $delete_good = Capsule::table('goods')
@@ -36,4 +41,9 @@ if ($have_good === null){
         ->delete();
     echo  "收回讚<br>";
 
+
+    $url = "ormboard.php";
+    echo "<script language='javascript' type='text/javascript'>";
+    echo "window.location.href='$url'";
+    echo "</script>";
 }
