@@ -42,6 +42,12 @@ $user = $_SESSION["user"];
         ->orderBy('id','desc')
         ->get();
 
+    $user_desc = Capsule::table('users')
+        ->select()
+        ->orderBy('id','desc')
+        ->first();
+
+    $user_id = $user_desc -> id;
 
     foreach ($boards_desc as $end) {
         echo "
@@ -57,6 +63,7 @@ $user = $_SESSION["user"];
                    
                 <form action = 'ormgood.php' method= 'POST'>
                 <input type = 'hidden' name='board_id' value='{$end->id}'>
+                <input type = 'hidden' name='user_id' value=$user_id >
                 <input type = 'hidden' name='user' value=$user >
                 <input type='submit' name='submit' value='讚'>
                 </form>
