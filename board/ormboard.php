@@ -77,6 +77,15 @@ $user = $_SESSION["user"];
                 </form>
                 ";
 
+        echo "
+                <form action = 'ormwhogood.php' method= 'POST'>
+                <input type = 'hidden' name='board_id' value='{$end->id}'>
+                <input type = 'hidden' name='user_id' value=$user_id >
+                <input type = 'hidden' name='user' value=$user >
+                <input type='submit' name='submit' value='查看讚者'>
+                </form>
+                ";
+
 
         echo "  
                 <font size='1' color='#9D9D9D'>{$end->create_time}</font><br>
