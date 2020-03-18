@@ -63,6 +63,25 @@ $user = $_SESSION['user'];
                 </form>
                 <br>";
 
+        $msgs_desc = Capsule::table('msgs')
+            ->select()
+            ->orderBy('id','desc')
+            ->get();
 
+        foreach ($msgs_desc as $msg_end) {
+
+
+            if ($end->id != $msg_end->boards_id) {
+                continue;
+            }
+
+            echo "
+                    <div style='border:3px #A3D1D1 ridge'	><font size='1' color='#7E3D76'>評論號：</font>{$msg_end->id}<br>
+                    <font size='1' color='#7E3D76'>評論者：</font>{$msg_end->msg_user}<br>
+                    <font size='1' color='#a9a9a9'>評論時間：{$msg_end->create_time}</font>
+                    <br><br>
+                    <font size='2' color='	#7E3D76'>評論內容</font><br>
+                    <font size='1' color='black'>{$msg_end->msg}</font>";
+        }
 
     }
