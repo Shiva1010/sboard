@@ -43,8 +43,6 @@ $user = $_SESSION['user'];
         ->get();
 
 
-//    $callboards = $conn->query($boards_desc);
-
     foreach ($boards_desc as $end) {
         echo "
                 <div style='border:3px 	#FF7575 ridge'>
@@ -54,6 +52,17 @@ $user = $_SESSION['user'];
                 <br>
                 <font size='2' color='#8b4513'>留言內容</font><br>
                 
-                {$end->content}<br>";
+                {$end->content}<br><br>
+                   
+                   
+                <form action = 'ormmsg.php' method= 'POST'>
+                <input type = 'hidden' name='board_id' value='{$end->id}'>
+                <input type = 'hidden' name='msg_user' value=$user >
+                <font size='2' color='#006400'>評論留言：</font><input type='text' name='msg'><br>
+                <input type='submit' name='submit' value='評論'></div>
+                </form>
+                <br>";
+
+
 
     }
