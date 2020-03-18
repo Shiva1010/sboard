@@ -92,6 +92,35 @@ $user = $_SESSION['user'];
                     </form>
                     </div>
                     <br>";
+
+            $remsgs_desc = Capsule::table('remsgs')
+                ->select()
+                ->orderBy('id','desc')
+                ->get();
+
+            foreach ($remsgs_desc as $remsg_end) {
+
+
+                if ($msg_end->id != $remsg_end->msg_id) {
+                    continue;
+                }
+
+                echo "
+                        
+                        <font size='1' color='#f08080'>回覆者：</font>
+                        <font size='1' color='#5B4B00'>{$remsg_end->remsg_user}</font><br>
+                        <font size='1' color='#a9a9a9'>回覆時間：{$remsg_end->create_time}</font><br>
+                        <font size='1' color='#f08080'>回覆內容</font><br>
+                        <font size='1' color='#5B4B00'>{$remsg_end->remsg}</font><br><br>
+                       
+                     ";
+
+            }
+
         }
 
     }
+    ?>
+
+</body>
+</html>
