@@ -2,12 +2,12 @@
 require "bootstrap.php";
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-if (isset($_POST['user'])) {
+////if (isset($_POST["user"])) {
+////
+//    $_SESSION["user"] = $_POST["user"];
+////}
 
-    $_SESSION['user'] = $_POST['user'];
-}
-
-$user = $_SESSION['user'];
+$user = $_SESSION["user"];
 
 ?>
 
